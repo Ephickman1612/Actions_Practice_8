@@ -102,4 +102,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main | grep container && echo "TEST PASSED"
+        run: |
+          IMAGE=$(echo "${REGISTRY}${ IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')
+          docker run --rm ${IMAGE}:${{ github.sha }} | grep container && echo "TEST PASSED"
