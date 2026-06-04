@@ -104,5 +104,5 @@ jobs:
       - name: test
         run: |
           IMAGE=$(echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
-          docker run --rm ${IMAGE}:main || docker run --rm ${IMAGE}:latest
+          docker run --rm ${IMAGE}:main || docker run --rm ${IMAGE}:latest |
           grep container && echo "TEST PASSED"
